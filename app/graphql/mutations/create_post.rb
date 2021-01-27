@@ -23,23 +23,18 @@ module Mutations
 	end
 end
 
-# mutation {
-#   createPost(input: {author: "New Author", description: "Hiiiiiiii", categoryId: 1}) {
-#       id
-#       author
-#       description
-#     	categoryId 
-#     }
-#    }
 
 # mutation {
-#   createPost(input: {author: "New Author", description: "Hiiiiiiii", categoryId: 1,}) {
-#       id
-#       author
-#       description
-#     	categoryId 
+#   createPost(input: {author: "New Author", description: "Hiiiiiiii", categoryId: 1}) {
+#     id
+#     author
+#     description
+#     category {
+#       name
 #     }
-#    }
+#   }
+# }
+
 
 # mutation {
 #  createPost(input: {author: "John", description: "Roy", categoryId: 2, 
