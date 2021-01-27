@@ -3,8 +3,8 @@ module Types
     # TODO: remove me
     field :create_post, mutation: Mutations::CreatePost
     field :create_section, mutation: Mutations::CreateSection
-    # field :update_post, mutation: Mutations::UdatePost
-    # field :delete_post, mutation: Mutations::DeletePost
+    field :update_post, mutation: Mutations::UpdatePost
+    field :delete_post, mutation: Mutations::DeletePost
       # description: "An example field added by the generator"
     # def test_field
       # "Hello World"

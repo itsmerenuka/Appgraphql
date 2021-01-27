@@ -1,13 +1,23 @@
 module Mutations
-  class UpdatePost< BaseMutation
-      argument :author, String, required: true
-      argument :description, String, required: true
-      argument :category_id, ID, required: true
+  class DeletePost< BaseMutation
+  	  argument :id, ID, required: true
+      argument :author, String, required: false
+      argument :description, String, required: false
+      argument :category_id, ID, required: false
+
+      type Types::PostType
 
     def resolve(id:)
       post = Post.find(id)
       post.destroy!
-      
     end
   end
 end
+
+# mutation{
+#   deletePost(input:{id: 7}){
+#     	id
+#     author
+#   }
+  
+# }

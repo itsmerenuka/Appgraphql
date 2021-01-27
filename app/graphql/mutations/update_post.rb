@@ -1,16 +1,24 @@
 module Mutations
   class UpdatePost< BaseMutation
-   argument :author, String, required: true
-      argument :description, String, required: true
-      argument :category_id, ID, required: true
+      argument :id, ID, required: true
+      argument :author, String, required: true
+      # argument :description, String, required: true
+      # argument :category_id, ID, required: true
 
-    def resolve(id:, author:, description:, category_id:)
+      type Types::PostType
+
+
+    def resolve(id:, **attributes)
       post = Post.find(id)
-      post.update!(author: author, description: description, category_id: category_id)
-      {
-        post: post
-      }
-      
+      post.update!(attributes)     
     end
   end
 end
+
+# mutation{
+#   updatePost(input: {id: 1, author: "Zane"}){
+#     id
+#     description
+#     author
+#   }
+# }
