@@ -3,26 +3,24 @@ module Mutations
 		argument :author, String, required: true
     	argument :description, String, required: true
     	argument :category_id, ID, required: true
-    	# argument :sections , Types::SectionInputType, required: true
+    	argument :sections, [Types::SectionInputType], required: false
+    	field :post, Types::PostType, null: false
 
-    		type Types::PostType
-
-
-	    def resolve(author: , description:, category_id:)
-	      	Post.create!(
-	        author: author,
-	        description: description,
-	        category_id: category_id
+	    def resolve(params)
+	      p = Post.create!(
+	        author: params[:author],
+	        description: params[:description],
+	        category_id: params[:category_id]
 	      )
-	      # p.sections.create()
-	      # ap "Params = #{params}"
-	       # p = Post.create( author: author, description: description, category_id: category_id)
-	       # sections = p.sections.create
-	       # p.save
+	      params[:sections].each do |sec|
+	    	p.sections.create!(sec.to_h)
+	      end
+         { post: p }
 	    end
 	end
 end
 
+# ------------------------------------------------------------------------------------------------
 
 # mutation {
 #   createPost(input: {author: "New Author", description: "Hiiiiiiii", categoryId: 1}) {
@@ -37,9 +35,31 @@ end
 
 
 # mutation {
-#  createPost(input: {author: "John", description: "Roy", categoryId: 2, 
-#  sections: [{body:  "body...", header: "This is header...", footer: "footer.....", title: "First title"}]
-# }
-# )
-# id
+#     createPost( 
+#         author: "Jerry", 
+#         description: "Hi this is demonstartion", 
+#         categoryId: 1,
+#             sections:
+#             [{
+#                 body: "body...", 
+#                 header: "This is header.....", 
+#                 footer: "This is footer.....", 
+#                 title: "Looks Good"
+#       }]
+#   )
+#   {
+#     post {
+#         id
+#       author
+#       category {
+#         name
+#       }
+#       sections{
+#         header
+#         footer
+#         body
+#         title
+#       }
+#       }
+#   }
 # }

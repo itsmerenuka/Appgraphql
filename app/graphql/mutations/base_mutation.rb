@@ -1,5 +1,6 @@
 module Mutations
-  class BaseMutation < GraphQL::Schema::RelayClassicMutation
+  # class BaseMutation < GraphQL::Schema::RelayClassicMutation
+  class BaseMutation < GraphQL::Schema::Mutation
     # argument_class Types::BaseArgument
     # field_class Types::BaseField
     # input_object_class Types::BaseInputObject
@@ -7,3 +8,13 @@ module Mutations
     null false	
   end
 end
+# module Mutations
+#   # class BaseMutation < GraphQL::Schema::RelayClassicMutation
+#   class BaseMutation < GraphQL::Schema::Mutation
+#     # argument_class Types::BaseArgument
+#     # field_class Types::BaseField
+#     # input_object_class Types::BaseInputObject
+#     # object_class Types::BaseObject
+#     null false
+#   end
+# end

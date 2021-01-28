@@ -5,11 +5,12 @@ module Mutations
       argument :description, String, required: false
       argument :category_id, ID, required: false
 
-      type Types::PostType
+          field :post, Types::PostType, null: false
 
     def resolve(id:)
       post = Post.find(id)
       post.destroy!
+       { post: post }
     end
   end
 end

@@ -18,19 +18,8 @@ module Types
       argument :category_id, ID, required: true
     end
 
-    field :sections_of_post, [SectionType], null: false do
-      description "get all sections of posts"
-      argument :post_id, ID, required: true
-    end
-
     field :all_sections, [SectionType], null: false do
       description "Get list of all sections"
-    end
-  
-    def sections_of_post(**args)
-      puts "Hello"
-      puts "#{args}"
-      Post.find(args[:post_id]).sections
     end
 
     def all_sections
@@ -54,6 +43,24 @@ module Types
       posts = Post.where(category_id: category_id)
     end
 
+# query{
+#   post(id: 30){
+#    author
+#     description
+#     category{
+#       name
+#     }
+#     sections{
+#       title
+#       body
+#       header
+#       footer
+#     }
+    
+#   }
+# }
+
+
 # {
 #   allPosts
 #     { 
@@ -66,14 +73,6 @@ module Types
 #   }
 # }
     
-# query {
-#   post(id: 1) {
-#     author
-#     description
-#     categoryId
-#   }
-# }
-  
 # query {
 #   postByCategory(categoryId: 1) {
 #     author

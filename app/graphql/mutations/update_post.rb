@@ -5,12 +5,13 @@ module Mutations
       # argument :description, String, required: true
       # argument :category_id, ID, required: true
 
-      type Types::PostType
+          field :post, Types::PostType, null: false
 
 
     def resolve(id:, **attributes)
       post = Post.find(id)
       post.update!(attributes)     
+       { post: post }
     end
   end
 end
